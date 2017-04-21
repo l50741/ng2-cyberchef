@@ -1,0 +1,7 @@
+.input-textbox {
+    resize: none;
+    font-size: 10pt;
+    border: none !important;
+    padding: 10px;
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+}

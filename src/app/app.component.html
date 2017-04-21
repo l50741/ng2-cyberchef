@@ -1,0 +1,11 @@
+<div fxLayout="row" style="height: 100%">
+  <app-operations class="component-box" fxFlex></app-operations>
+  <div fxLayout="column" fxFlex>
+    <app-recipe fxFlex class="component-box" (recipeUpdated)="handleRecipeUpdated($event)"></app-recipe>
+    <app-controls fxFlex class="component-box"></app-controls>
+  </div>
+  <div fxLayout="column" fxFlex>
+    <app-input fxFlex class="component-box" (inputChanged)="handleInputChanged($event)"></app-input>
+    <app-output fxFlex class="component-box" [output]="output"></app-output>
+  </div>
+</div>

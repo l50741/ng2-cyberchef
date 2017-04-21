@@ -1,0 +1,11 @@
+.operation-box {
+    padding: 5px 15px;
+    margin: 5px;
+    background-color: #d9edf7;
+    color: #3a87ad;
+    border: 1px solid #bce8f1;
+}
+
+.operations-content {
+    overflow-y: auto;
+}

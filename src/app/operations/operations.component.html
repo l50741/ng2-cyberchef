@@ -1,0 +1,12 @@
+<md-card fxLayout="column" style="height: 100%;">
+  <div class="content-card-header">
+    <md-card-title>Operations</md-card-title>
+  </div>
+  <md-card-content fxFlex class="operations-content">
+    <div id="operations-container" [dragula]="'operations'" [dragulaModel]="operations" fxFlex>
+      <div *ngFor="let operation of operations" class="operation-box">
+        <p>{{operation.name}}</p>
+      </div>
+    </div>
+  </md-card-content>
+</md-card>

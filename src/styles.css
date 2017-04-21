@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, 
+body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+
+.app-content {
+  padding: 20px;
+}
+
+.content-card-header {
+  padding: 10px !important;
+}
+
+md-card-title {
+  font-size: 12pt !important;
+  margin: 0 !important;
+}
+
+md-card {
+  padding: 0 !important;
+}
