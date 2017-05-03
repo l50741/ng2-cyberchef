@@ -12,6 +12,7 @@ import 'rxjs/add/observable/fromEvent';
 })
 export class InputComponent implements OnInit {
   inputValue = '';
+  lineCount = 0;
   inputControl = new FormControl();
 
   @Output() inputChanged = new EventEmitter();
@@ -23,8 +24,14 @@ export class InputComponent implements OnInit {
       .debounceTime(500)
       .subscribe(newValue => {
         this.inputValue = newValue;
+        let lines = newValue.split(/\r|\r\n|\n/);
+        this.lineCount = lines.length;
         this.inputChanged.emit(newValue);
       });
+  }
+
+  clearInput() {
+    this.inputControl.setValue('');
   }
 
 }

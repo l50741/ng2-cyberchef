@@ -23,3 +23,30 @@ md-card-title {
 md-card {
   padding: 0 !important;
 }
+
+.length-info {
+  text-align: right;
+  margin: 0 10px !important;
+}
+
+.length-info p {
+  margin: 0 !important;
+  font-size: 8pt;
+}
+
+.title-button {
+  margin: -5px 0 !important;
+  font-size: 9pt !important;
+  line-height: 9pt !important;
+  padding: 0 10px !important;
+  height: 30px;
+  min-width: 30px !important;
+}
+
+.handle {
+  background-color: #e3e3e3 !important;
+}
+
+vertical-split-separator, horizontal-split-separator {
+  border: none !important;
+}

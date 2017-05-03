@@ -1,6 +1,13 @@
 <md-card fxLayout="column" style="height: 100%">
-  <div class="content-card-header">
-    <md-card-title>Input</md-card-title>
+  <div class="content-card-header" fxLayout="row">
+    <md-card-title fxFlex>Input</md-card-title>
+    <div fxLayout="column" class="length-info">
+      <p>length: {{inputValue.length}}<p>
+      <p>lines: {{lineCount}}</p>
+    </div>
+    <button md-raised-button (click)="clearInput()" mdTooltip="Clear input and output" aria-label="Clear input and output" class="title-button">
+      Clear I/O
+    </button>
   </div>
   <md-card-content fxFlex fxLayout="column">
     <textarea id="input-text" fxFlex class="input-textbox" [value]="inputValue" [formControl]="inputControl"></textarea>

@@ -51,7 +51,7 @@ export class AppComponent implements AfterViewInit {
       });
       this.output = value;
     } else {
-      this.output = '';
+      this.output = this.input;
     }
   }
 }

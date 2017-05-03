@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { MaterialModule } from '@angular/material';
 import { Ng2Webstorage } from 'ng2-webstorage';
 import { DragulaModule } from 'ng2-dragula';
+import { SplitPaneModule } from 'ng2-split-pane';
 
 import { AppComponent } from './app.component';
 import { OperationsComponent } from './operations/operations.component';
@@ -33,7 +34,8 @@ import { ControlsComponent } from './controls/controls.component';
     ReactiveFormsModule,
     HttpModule,
     MaterialModule,
-    Ng2Webstorage
+    Ng2Webstorage,
+    SplitPaneModule
   ],
   providers: [],
   bootstrap: [AppComponent]
