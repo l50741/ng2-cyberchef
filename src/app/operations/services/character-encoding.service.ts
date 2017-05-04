@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { UtilsService } from '../../utils.service';
 import * as CryptoJS from 'crypto-js';
+import * as _ from 'lodash';
 
 @Injectable()
 export class CharacterEncodingService {
@@ -18,22 +19,32 @@ export class CharacterEncodingService {
    * @returns {string}
    */
   run(input, args) {
-    if (args && args.inputFormat && args.outputFormat) {
-      const inputFormat = args.inputFormat;
-      const outputFormat = args.outputFormat;
+    if (args.length > 1) {
+      let inputFormat;
+      let outputFormat;
+      _.forEach(args, (arg) => {
+        if (arg.name === 'input') {
+          inputFormat = arg.value
+        } else if (arg.name === 'output') {
+          outputFormat = arg.value
+        }
+      });
+      if (inputFormat !== undefined && inputFormat.length > 0 && outputFormat !== undefined && outputFormat.length > 0) {
+        if (inputFormat === 'Windows-1251') {
+          input = this.utilsService.win1251ToUnicode(input);
+          input = CryptoJS.enc.Utf8.parse(input);
+        } else {
+          input = this.utilsService.getFormat(inputFormat).parse(input);
+        }
 
-      if (inputFormat === 'Windows-1251') {
-        input = this.utilsService.win1251ToUnicode(input);
-        input = CryptoJS.enc.Utf8.parse(input);
+        if (outputFormat === 'Windows-1251') {
+          input = CryptoJS.enc.Utf8.stringify(input);
+          return this.utilsService.unicodeToWin1251(input);
+        } else {
+          return this.utilsService.getFormat(outputFormat).stringify(input);
+        }
       } else {
-        input = this.utilsService.getFormat(inputFormat).parse(input);
-      }
-
-      if (outputFormat === 'Windows-1251') {
-        input = CryptoJS.enc.Utf8.stringify(input);
-        return this.utilsService.unicodeToWin1251(input);
-      } else {
-        return this.utilsService.getFormat(outputFormat).stringify(input);
+        return input;
       }
     } else {
       return input;

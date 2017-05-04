@@ -5,7 +5,22 @@
   <md-card-content fxFlex fxLayout="column">
     <div id="recipe-container" [dragula]="'operations'" [dragulaModel]="operations" fxFlex>
       <div *ngFor="let operation of operations" class="operation-box">
-        <p>{{operation.name}}</p>
+        <p class="operation-name"><b>{{operation.name}}</b></p>
+        <div *ngFor="let arg of operation.args">
+          <div *ngIf="arg.type === 'options'" fxLayout="row" class="arg-options">
+            <p class="arg-title"><small>{{arg.title}}</small></p>
+            <md-select (change)="changeArg()" [(ngModel)]="arg.value">
+              <md-option *ngFor="let option of arg.options" [value]="option">
+                {{option}}
+              </md-option>
+            </md-select>
+          </div>
+          <div *ngIf="arg.type === 'boolean'" fxLayout="row" class="arg-boolean">
+            <md-checkbox [checked]="arg.value" (change)="changeBoolean($event.checked, arg)">
+              {{arg.title}}
+            </md-checkbox>
+          </div>
+        </div>
       </div>
     </div>
   </md-card-content>

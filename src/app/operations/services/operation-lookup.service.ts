@@ -6,10 +6,18 @@ import { UtilsService } from '../../utils.service';
 
 import * as _ from 'lodash';
 
+export interface OperationArgument {
+  name: string,
+  title: string;
+  type: string,
+  options?: Array<string>,
+  value: any
+}
+
 export interface Operation {
   name: string;
   operationFunction: any;
-  args?: any;
+  args?: Array<OperationArgument>;
 }
 
 @Injectable()
@@ -34,42 +42,38 @@ export class OperationLookupService {
       {
         name: 'Encode URL',
         operationFunction: (input, args) => this.urlService.runTo(input, args),
-        args: {
-          encodeAll: false
-        }
+        args: [
+          {
+            name: 'encodeAll',
+            title: 'Encode all special chars',
+            type: 'boolean',
+            value: false
+          }
+        ]
+      },
+      {
+        name: 'Text Encoding',
+        operationFunction: (input, args) => this.characterEncodingService.run(input, args),
+        args: [
+          {
+            name: 'input',
+            title: 'Input type',
+            type: 'options',
+            options: this.characterEncodingService.getAvailableFormats(),
+            value: 'UTF8'
+          },
+          {
+            name: 'output',
+            title: 'Output type',
+            type: 'options',
+            options: this.characterEncodingService.getAvailableFormats(),
+            value: 'UTF8'
+          }
+        ]
       }
     ];
-    this.addEncodingOperations();
     _.forEach(this.operations, (operation) => {
       this.names.push(operation.name);
-    });
-  }
-
-  addEncodingOperations() {
-    const formats = this.characterEncodingService.getAvailableFormats();
-    _.forEach(formats, (format) => {
-      if (format !== 'Latin1') {
-        this.operations.push({
-          name: 'To ' + format,
-          operationFunction: (input, args) => this.characterEncodingService.run(input, args),
-          args: {
-            inputFormat: 'Latin1',
-            outputFormat: format
-          }
-        });
-      }
-    });
-    _.forEach(formats, (format) => {
-      if (format !== 'Latin1') {
-        this.operations.push({
-          name: 'From ' + format,
-          operationFunction: (input, args) => this.characterEncodingService.run(input, args),
-          args: {
-            inputFormat: format,
-            outputFormat: 'Latin1'
-          }
-        });
-      }
     });
   }
 

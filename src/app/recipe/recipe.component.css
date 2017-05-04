@@ -5,3 +5,8 @@
     color: #468847;
     border: 1px solid #d6e9c6;
 }
+
+.arg-title {
+    margin: 5px 10px;
+    width: 100px;
+}

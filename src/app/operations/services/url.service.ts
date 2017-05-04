@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { UtilsService } from '../../utils.service';
 
+import * as _ from 'lodash';
+
 @Injectable()
 export class URLService {
 
@@ -15,8 +17,12 @@ export class URLService {
    */
   runTo(input: string, args?) {
     let encodeAll = false;
-    if (args && args.encodeAll) {
-      encodeAll = args.encodeAll;
+    if (args && args.length > 0) {
+      _.forEach(args, (arg) => {
+        if (arg.name === 'encodeAll') {
+          encodeAll = arg.value;
+        }
+      });
     }
     return encodeAll ? this._encodeAllChars(input) : encodeURI(input);
   }

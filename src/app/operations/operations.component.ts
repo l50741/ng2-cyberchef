@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform, Injectable } from '@angular/core';
 import { OperationLookupService, Operation } from './services/operation-lookup.service';
 
 @Component({
@@ -19,3 +19,17 @@ export class OperationsComponent implements OnInit {
   }
 
 }
+
+ @Pipe({
+   name:'filter',
+   pure:false
+ })
+@Injectable()
+ export class SearchPipe implements PipeTransform {
+   transform(items :any ,term :any): any {
+     if(term === undefined) return items;
+     return items.filter((item) => {
+       return item.name.toLowerCase().includes(term.toLowerCase());
+     })
+   }
+ }

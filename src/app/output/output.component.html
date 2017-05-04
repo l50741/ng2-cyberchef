@@ -1,8 +1,12 @@
 <md-card fxLayout="column" style="height: 100%">
-  <div class="content-card-header">
-    <md-card-title>Output</md-card-title>
+  <div class="content-card-header" fxLayout="row">
+    <md-card-title fxFlex>Output</md-card-title>
+    <div fxLayout="column" class="length-info">
+      <p>time: <span *ngIf="timings !== undefined">{{timings.duration}}</span><span *ngIf="timings === undefined">0</span>ms<p>
+      <p>length: <span *ngIf="output !== undefined">{{output.length}}</span><span *ngIf="output === undefined">0</span></p>
+    </div>
   </div>
-  <md-card-content style="padding: 10px;">
-    <p>{{output}}</p>
+  <md-card-content fxFlex fxLayout="column">
+    <textarea id="output-text" fxFlex class="output-textbox" [value]="output" readonly></textarea>
   </md-card-content>
 </md-card>

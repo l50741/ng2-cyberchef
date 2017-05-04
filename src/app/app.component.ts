@@ -23,11 +23,11 @@ export class AppComponent implements AfterViewInit {
   recipe: Array<Operation>;
   input: string;
   output: string;
+  timings: any;
 
   constructor(private operationLookupService: OperationLookupService) {}
 
   public ngAfterViewInit() {
-
   }
 
   handleRecipeUpdated(value: Array<Operation>) {
@@ -41,6 +41,7 @@ export class AppComponent implements AfterViewInit {
   }
 
   bake() {
+    const start = new Date().getTime();
     if (!this.input) {
       this.input = '';
     }
@@ -52,6 +53,12 @@ export class AppComponent implements AfterViewInit {
       this.output = value;
     } else {
       this.output = this.input;
+    }
+    const end = new Date().getTime();
+    this.timings = {
+      start: start,
+      end: end,
+      duration: end - start
     }
   }
 }

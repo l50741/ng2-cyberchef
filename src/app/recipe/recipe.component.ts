@@ -37,8 +37,21 @@ export class RecipeComponent implements OnInit {
     this.operations = [];
   }
 
-  private onDropModel(value) {
+  pushUpdates() {
     this.recipeUpdated.emit(this.operations);
+  }
+
+  changeArg() {
+    this.pushUpdates();
+  }
+
+  changeBoolean(checked, arg) {
+    arg.value = checked;
+    this.pushUpdates();
+  }
+
+  private onDropModel(value) {
+    this.pushUpdates();
   }
 
 }

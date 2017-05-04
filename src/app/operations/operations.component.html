@@ -2,9 +2,12 @@
   <div class="content-card-header">
     <md-card-title>Operations</md-card-title>
   </div>
-  <md-card-content fxFlex class="operations-content">
+  <md-card-content fxFlex class="operations-content" fxLayout="column">
+    <md-input-container style="margin: 10px 10px 0;">
+      <input mdInput type="text" name="operation-search-text" placeholder="Search..." [(ngModel)]="searchText">
+    </md-input-container>
     <div id="operations-container" [dragula]="'operations'" [dragulaModel]="operations" fxFlex>
-      <div *ngFor="let operation of operations" class="operation-box">
+      <div *ngFor="let operation of operations | filter:searchText" class="operation-box">
         <p>{{operation.name}}</p>
       </div>
     </div>

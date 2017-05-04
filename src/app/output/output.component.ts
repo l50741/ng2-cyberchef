@@ -7,9 +7,17 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class OutputComponent implements OnInit {
 
-  @Input() output;
+  @Input()
+  output: string = '';
+  @Input()
+  timings: any = {
+    duration: 0,
+    start: 0,
+    end: 0
+  };
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
